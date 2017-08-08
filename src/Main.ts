@@ -135,7 +135,7 @@ class Main extends eui.UILayer {
              GameData.userEmojiList=RES.getRes("configure_json").emoji;
              GameData.gameRule=RES.getRes("text_json").rule;
              GameData.speakUrl=RES.getRes("configure_json").speakUrl;
-             GameData.speakUpload="http://"+GameData.socketRequest+":"+GameData.socketPort+GameData.path.split("gameservice")[0]+"speak.do";
+            //  GameData.speakUpload="http://"+GameData.socketRequest+":"+GameData.socketPort+GameData.path.split("gameservice")[0]+"speak.do";
              GameData.loginlink=RES.getRes("configure_json").loginlink;
              GameData.gameType=RES.getRes("configure_json").gameType;
              GameData.jssdkUrl=RES.getRes("configure_json").jssdkUrl;

@@ -11,7 +11,7 @@ var game_file_list = [
 	"libs/modules/eui/eui.js",
 	"libsrc/bin/weixinapi/weixinapi.js",
 	"bin-debug/ui/WinBase.js",
-	"bin-debug/wnd/ShareWnd.js",
+	"bin-debug/ui/WndManager.js",
 	"bin-debug/GameData.js",
 	"bin-debug/GameJudge.js",
 	"bin-debug/JSSDK.js",
@@ -38,7 +38,7 @@ var game_file_list = [
 	"bin-debug/ThemeAdapter.js",
 	"bin-debug/ui/Notify.js",
 	"bin-debug/AssetAdapter.js",
-	"bin-debug/ui/WndManager.js",
+	"bin-debug/game_packet/CommonUtils.js",
 	"bin-debug/wnd/AlertWnd.js",
 	"bin-debug/wnd/EndWnd.js",
 	"bin-debug/wnd/event/ButtonEvent.js",
@@ -65,7 +65,7 @@ var game_file_list = [
 	"bin-debug/wnd/game/UserIcon.js",
 	"bin-debug/wnd/game/WatchObject.js",
 	"bin-debug/wnd/GameWnd.js",
-	"bin-debug/game_packet/CommonUtils.js",
+	"bin-debug/wnd/ShareWnd.js",
 	//----auto game_file_list end----
 ];
 
