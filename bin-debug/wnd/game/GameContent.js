@@ -289,7 +289,7 @@ var GameContent = (function (_super) {
             //currentSelectPlace
             if (e.targetObject.sitDownEnabled) {
                 GameData.currentSelectPlace = e.targetObject.emptyCode;
-                if (GameData.gotpPay) {
+                if (GameData.gotpPay || GameData.packLeftTime > 0) {
                     WndManager.root.main.spush.seated(GameData.currentSelectPlace);
                 }
                 else {
@@ -405,6 +405,7 @@ var GameContent = (function (_super) {
             if (players[i].tid == 0) {
                 this.userIcon[i].read = false;
                 this.userIcon[i].leave = 0;
+                this.userIcon[i].crown = false;
             }
             else {
                 currentUserNumber++;
@@ -412,6 +413,7 @@ var GameContent = (function (_super) {
                 this.userIcon[i].sex = GameData.sexList[players[i].sex];
                 this.userIcon[i].nameTxt.text = players[i].nick;
                 this.userIcon[i].head = players[i].headimg;
+                this.userIcon[i].crown = players[i].packLeftTime > 0;
                 if (GameData.rstate == 1) {
                     this.userIcon[i].read = true;
                 }

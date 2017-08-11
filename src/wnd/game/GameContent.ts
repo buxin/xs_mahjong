@@ -219,7 +219,7 @@ private hintTxt: eui.Label;
 		//currentSelectPlace
 		    if(e.targetObject.sitDownEnabled){
 			   GameData.currentSelectPlace=e.targetObject.emptyCode;
-			if(GameData.gotpPay){ 
+			if(GameData.gotpPay||GameData.packLeftTime>0){ 
              WndManager.root.main.spush.seated(GameData.currentSelectPlace);
 				}else{
             WndManager.root.main.alert.show("本游戏工具为收费软件，按游戏时间扣除钻石一经确定不予退还（若因未开局造成房间解散钻石将会全额返还），是否花费"+GameData.gotpGold+"钻石加入牌局?",[{texture:"ok_png",code:101},{texture:"no_png",code:100}]);
@@ -330,12 +330,14 @@ private hintTxt: eui.Label;
 				   if(players[i].tid==0){
 					    this.userIcon[i].read=false;
 						this.userIcon[i].leave=0;
+						this.userIcon[i].crown=false;
 				   }else{
 					    currentUserNumber++;
 					    this.userIcon[i].tid= players[i].tid;
 						this.userIcon[i].sex=GameData.sexList[players[i].sex];
 						this.userIcon[i].nameTxt.text=players[i].nick;
 						this.userIcon[i].head=players[i].headimg;
+						this.userIcon[i].crown=players[i].packLeftTime>0;
 						if(GameData.rstate==1){
 							this.userIcon[i].read=true;	
 						}else if(GameData.rstate==3){

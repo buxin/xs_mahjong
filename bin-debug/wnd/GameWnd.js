@@ -343,6 +343,7 @@ var GameWnd = (function (_super) {
             this.gameContent.timers();
         }
         this.gameButton.timers();
+        this.userDataGift.timers();
     };
     //接收的消息
     GameWnd.prototype.createRoom = function () {

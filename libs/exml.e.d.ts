@@ -16,6 +16,8 @@ declare module skins{
 }
 declare class rankItem extends eui.Skin{
 }
+declare class NewFile extends eui.Skin{
+}
 declare class banner extends eui.Skin{
 }
 declare class eatlist extends eui.Skin{

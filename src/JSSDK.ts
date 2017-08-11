@@ -109,7 +109,7 @@ class JSSDK extends egret.DisplayObjectContainer {
         this.imgUrl =GameData.head;
         this.url = GameData.jssdkUrl+ encodeURIComponent(location.href.split("#")[0]);
         //获取签名
-        // this.getSignPackage();
+        this.getSignPackage();
     }
 
     /**

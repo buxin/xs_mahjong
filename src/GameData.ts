@@ -83,6 +83,8 @@ class GameData {
 	static userTextList:any=[{id:0,txt:"我等的花儿也谢了!"}];//用户文本内容
 	static userEmojiList:any=[];//用户表情列表
 	static gameRule:string="";//游戏规则
+	static packLeftTime:number=0;
+	static packTotalTime:number=0;
 	//礼物
 	static jewel:number=0;//用户砖石
 	static glist:any=[];//礼物

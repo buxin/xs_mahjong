@@ -86,6 +86,8 @@ GameData.speakSec = 0; //录制的时间
 GameData.userTextList = [{ id: 0, txt: "我等的花儿也谢了!" }]; //用户文本内容
 GameData.userEmojiList = []; //用户表情列表
 GameData.gameRule = ""; //游戏规则
+GameData.packLeftTime = 0;
+GameData.packTotalTime = 0;
 //礼物
 GameData.jewel = 0; //用户砖石
 GameData.glist = []; //礼物

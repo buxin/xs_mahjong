@@ -34,6 +34,10 @@ class UserDataGift extends eui.Component{
   private _group: eui.Group;
   private page_left: eui.Rect;
   private page_right: eui.Rect;
+  private crownImg:eui.Image;
+  private crownTimer: eui.Group;
+  private timerT: eui.Image;
+  private timerText: eui.Label;
 
   public constructor() {
 		super();
@@ -54,6 +58,7 @@ class UserDataGift extends eui.Component{
   this.addChild(this.headContent);
   this.headContent.addChild(this.headBim);
   this.headContent.mask=this.headMasMc;
+  // this.timestamp=new Date().getTime();
    this.addEventListener(egret.Event.REMOVED_FROM_STAGE,this.removeThis,this);
 		}
     //
@@ -86,22 +91,65 @@ class UserDataGift extends eui.Component{
       //礼物是否可以点击
         var giftEnabled:boolean=true;
         var texture:string="giftico";
+        this.nameTxt.height=66;
+        this.crownTimer.visible=false;
         if(this.tid==GameData.tid){//如果是自己给自己送礼
              giftEnabled=false;
              texture="gifticonull";
+             if(GameData.packLeftTime>0){
+                this.nameTxt.height=30;
+                this.crownTimer.visible=true;
+                this.timerRefresh();
+             }
             //  WndManager.root.main.alert.show(GameData.textJson[7],[{texture:"ok_png",code:100}]);
          }else if(GameJudge.ownPartake==false){//如果自己没有坐下
               giftEnabled=false;
               texture="gifticonull";
          }
         for(var i=0;i<this.giftNumber;i++){
-            console.log(texture+GameData.glist[i].id)
+           // console.log(texture+GameData.glist[i].id)
              this.giftObject[i].ico.texture=RES.getRes(texture+GameData.glist[i].id);
              this.giftObject[i].clickEnabled=giftEnabled;
         }
       //
        this._scroller.viewport.scrollH=0;
+       //皇冠时间
+      // console.log(tid);
+        for(i=0;i<GameData.userNumber;i++){
+            if(GameData.plays[i].tid==this.tid){
+                 this.crownImg.visible=GameData.plays[i].packLeftTime>0;
+            }
+        }
+      // if(this.tid==)
     }
+    public timers(){
+      GameData.packLeftTime--;
+    //  var unixTimestamp = new Date( this.timestamp+GameData.packLeftTime) ;
+     //  var commonTime = unixTimestamp.toLocaleString();
+     //  console.log(commonTime);
+      if(GameData.packLeftTime>-1){
+         this.timerRefresh();
+      }
+    }
+    private theTime:number=0;
+    private theTime1:number=0;
+    private theTime2:number=0;
+    private timerRefresh(){
+         //  console.log(GameData.packLeftTime);
+          this.timerT.width=200*GameData.packLeftTime/GameData.packTotalTime;
+          this.theTime=GameData.packLeftTime;
+          if(this.theTime > 60) { 
+          this.theTime1 = Math.floor(this.theTime/60); 
+         this.theTime = Math.floor(this.theTime%60); 
+// alert(theTime1+"-"+theTime); 
+         if(this.theTime1 > 60) { 
+         this.theTime2 = Math.floor(this.theTime1/60); 
+         this.theTime1 = Math.floor(this.theTime1%60); 
+     }else this.theTime2=0;
+     } else  this.theTime1=0;
+       this.timerText.text="会员倒计时 "+Math.floor(this.theTime2)+":"+Math.floor(this.theTime1)+":"+Math.floor(this.theTime);
+    }
+
     private giftClick(e:egret.TouchEvent):void{
          if(e.currentTarget.clickEnabled){//如果是自己给自己送礼
           if(GameData.jewel-e.currentTarget.jewel<0){

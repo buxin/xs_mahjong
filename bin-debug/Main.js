@@ -121,7 +121,7 @@ var Main = (function (_super) {
             GameData.gameType = RES.getRes("configure_json").gameType;
             GameData.jssdkUrl = RES.getRes("configure_json").jssdkUrl;
             GameData.speakUp = RES.getRes("configure_json").speakUp;
-            // egret.localStorage.setItem("nlq","1");
+            egret.localStorage.setItem("nlq", "1");
             var str = egret.localStorage.getItem("nlq");
             if (str != "1") {
                 window.location.href = GameData.loginlink + "oauth2.do?roomkey=" + GameData.roomKey + "&gametype=" + GameData.gameType + "&ghtid=" + GameData.ghtid + "&gname=" + GameData.gname;
@@ -268,14 +268,14 @@ var Main = (function (_super) {
         // this._jssdk.addEventListener(JssdkEvent.SOUNDEND,this.soundEnd,this);
         //
         egret.setInterval(this.timerPlay, this, 1000);
-        /*
-       console.log("http://192.168.1.58:8080/hall/enter.do?openid=o39HWv5fVYm20E3Gaa1EGgk9OZjw&nick=111");
-       console.log("http://192.168.1.58:8080/hall/enter.do?openid=o39HWvyv5QRwxzdY08wTkc7tyw9Y&gametype=1&roomkey="+MyUtils.getMyParamer("roomkey"));
-       console.log("http://192.168.1.58:8080/hall/enter.do?openid=o39HWv18zaIqaPqCrMBu5I4f1r9g&gametype=1&roomkey="+MyUtils.getMyParamer("roomkey"));
-       console.log("http://192.168.1.58:8080/hall/enter.do?openid=o39HWv79xDci9Gk5QcZS_tHHU0oE&gametype=1&roomkey="+MyUtils.getMyParamer("roomkey"));
-       console.log("http://192.168.1.58:8080/hall/enter.do?openid=o39HWvxkx-Fh38Qrtf1lzUFcdTQY&gametype=1&roomkey="+MyUtils.getMyParamer("roomkey"));
-       console.log("http://192.168.1.58:8080/hall/enter.do?openid=o39HWvyrRESeBjDFxKZUovxSjn8M&gametype=1&roomkey="+MyUtils.getMyParamer("roomkey"));
-    */
+        // alert(location.href.split("#")[0]);
+        console.log("-=-=-=-=-=->" + WndManager.root.wndmanager.desc);
+        console.log("http://192.168.1.58:8080/hall/enter.do?openid=o39HWv5fVYm20E3Gaa1EGgk9OZjw&nick=111");
+        console.log("http://192.168.1.58:8080/hall/enter.do?openid=o39HWvyv5QRwxzdY08wTkc7tyw9Y&nick=222&gametype=1&roomkey=" + MyUtils.getMyParamer("roomkey"));
+        console.log("http://192.168.1.58:8080/hall/enter.do?openid=o39HWv18zaIqaPqCrMBu5I4f1r9g&nick=3333&gametype=1&roomkey=" + MyUtils.getMyParamer("roomkey"));
+        console.log("http://192.168.1.58:8080/hall/enter.do?openid=o39HWv79xDci9Gk5QcZS_tHHU0oE&nick=444&gametype=1&roomkey=" + MyUtils.getMyParamer("roomkey"));
+        console.log("http://192.168.1.58:8080/hall/enter.do?openid=o39HWvxkx-Fh38Qrtf1lzUFcdTQY&nick=555&gametype=1&roomkey=" + MyUtils.getMyParamer("roomkey"));
+        console.log("http://192.168.1.58:8080/hall/enter.do?openid=o39HWvyrRESeBjDFxKZUovxSjn8M&gametype=1&roomkey=" + MyUtils.getMyParamer("roomkey"));
     };
     Main.prototype.sendSpeech = function (e) {
         WndManager.root.main.spush.speak(e.code);
@@ -322,6 +322,9 @@ var Main = (function (_super) {
                 break;
             case 1002:
                 window.location.href = RES.getRes("configure_json").halllink + GameData.hallversion + "/index.html?page=1&key=" + GameData.userkey + "&gametype=" + RES.getRes("configure_json").gameType + "&roomkey=" + GameData.roomKey + "&ghtid=" + GameData.ghtid + "&gname=" + GameData.gname;
+                break;
+            case 1003:
+                window.location.href = RES.getRes("configure_json").halllink + GameData.hallversion + "/index.html?page=0&key=" + GameData.userkey + "&gametype=" + RES.getRes("configure_json").gameType + "&roomkey=" + GameData.roomKey + "&ghtid=" + GameData.ghtid + "&gname=" + GameData.gname + "&gameweb=" + encodeURIComponent(location.href.split("#")[0]);
                 break;
         }
     };

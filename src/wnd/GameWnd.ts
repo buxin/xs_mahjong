@@ -336,6 +336,7 @@ public showUserRecord(data:any){
        this.gameContent.timers();
     }
     this.gameButton.timers();
+    this.userDataGift.timers();
   }
 
  

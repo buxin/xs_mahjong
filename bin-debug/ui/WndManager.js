@@ -44,6 +44,7 @@ var WndManager = (function (_super) {
     __extends(WndManager, _super);
     function WndManager() {
         var _this = _super.call(this) || this;
+        _this.desc = "123";
         _this.wins = [];
         return _this;
     }

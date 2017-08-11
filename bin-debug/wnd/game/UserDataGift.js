@@ -37,6 +37,9 @@ var UserDataGift = (function (_super) {
         _this.loadGift = true;
         _this.giftNumber = 0;
         _this.giftObject = [];
+        _this.theTime = 0;
+        _this.theTime1 = 0;
+        _this.theTime2 = 0;
         _this.angle = 0;
         _this.gameNumber = 0;
         _this.winNumber = 0;
@@ -60,6 +63,7 @@ var UserDataGift = (function (_super) {
         this.addChild(this.headContent);
         this.headContent.addChild(this.headBim);
         this.headContent.mask = this.headMasMc;
+        // this.timestamp=new Date().getTime();
         this.addEventListener(egret.Event.REMOVED_FROM_STAGE, this.removeThis, this);
     };
     UserDataGift.prototype.setUserData = function (tid, nick, headimg) {
@@ -87,21 +91,64 @@ var UserDataGift = (function (_super) {
         //礼物是否可以点击
         var giftEnabled = true;
         var texture = "giftico";
+        this.nameTxt.height = 66;
+        this.crownTimer.visible = false;
         if (this.tid == GameData.tid) {
             giftEnabled = false;
             texture = "gifticonull";
+            if (GameData.packLeftTime > 0) {
+                this.nameTxt.height = 30;
+                this.crownTimer.visible = true;
+                this.timerRefresh();
+            }
         }
         else if (GameJudge.ownPartake == false) {
             giftEnabled = false;
             texture = "gifticonull";
         }
         for (var i = 0; i < this.giftNumber; i++) {
-            console.log(texture + GameData.glist[i].id);
+            // console.log(texture+GameData.glist[i].id)
             this.giftObject[i].ico.texture = RES.getRes(texture + GameData.glist[i].id);
             this.giftObject[i].clickEnabled = giftEnabled;
         }
         //
         this._scroller.viewport.scrollH = 0;
+        //皇冠时间
+        // console.log(tid);
+        for (i = 0; i < GameData.userNumber; i++) {
+            if (GameData.plays[i].tid == this.tid) {
+                this.crownImg.visible = GameData.plays[i].packLeftTime > 0;
+            }
+        }
+        // if(this.tid==)
+    };
+    UserDataGift.prototype.timers = function () {
+        GameData.packLeftTime--;
+        //  var unixTimestamp = new Date( this.timestamp+GameData.packLeftTime) ;
+        //  var commonTime = unixTimestamp.toLocaleString();
+        //  console.log(commonTime);
+        if (GameData.packLeftTime > -1) {
+            this.timerRefresh();
+        }
+    };
+    UserDataGift.prototype.timerRefresh = function () {
+        //  console.log(GameData.packLeftTime);
+        this.timerT.width = 200 * GameData.packLeftTime / GameData.packTotalTime;
+        this.theTime = GameData.packLeftTime;
+        if (this.theTime > 60) {
+            this.theTime1 = Math.floor(this.theTime / 60);
+            this.theTime = Math.floor(this.theTime % 60);
+            // alert(theTime1+"-"+theTime); 
+            if (this.theTime1 > 60) {
+                this.theTime2 = Math.floor(this.theTime1 / 60);
+                this.theTime1 = Math.floor(this.theTime1 % 60);
+            }
+            else
+                this.theTime2 = 0;
+        }
+        else
+            this.theTime1 = 0;
+        this.timerText.text = "会员倒计时 " + Math.floor(this.theTime2) + ":" + Math.floor(this.theTime1) + ":" + Math.floor(this.theTime);
     };
     UserDataGift.prototype.giftClick = function (e) {
         if (e.currentTarget.clickEnabled) {

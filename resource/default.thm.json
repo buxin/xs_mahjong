@@ -21,6 +21,7 @@
     "resource/eui_skins/TextInputSkin.exml",
     "resource/eui_skins/VScrollBarSkin.exml",
     "resource/items/rankItem.exml",
+    "resource/wnd/NewFile.exml",
     "resource/wnd/banner.exml",
     "resource/wnd/eatlist.exml",
     "resource/wnd/end.exml",

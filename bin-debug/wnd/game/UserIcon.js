@@ -219,6 +219,17 @@ var UserIcon = (function (_super) {
         this.headBim.height = 64;
         this.loader = null;
     };
+    Object.defineProperty(UserIcon.prototype, "crown", {
+        get: function () {
+            return this.crownImg.visible;
+        },
+        set: function (tey) {
+            // console.log(tey,"??????");
+            this.crownImg.visible = tey;
+        },
+        enumerable: true,
+        configurable: true
+    });
     //
     UserIcon.prototype.speechPlay = function () {
         this.speech.visible = true;

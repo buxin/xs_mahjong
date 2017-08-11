@@ -154,6 +154,8 @@ class SocketPush extends egret.EventDispatcher {
                  GameData.gotpPay=jsonObj.data.pay;
                  GameData.jewel=jsonObj.data.jewel;
                  GameData.glist=jsonObj.data.glist;
+                 GameData.packLeftTime=Math.floor(jsonObj.data.packLeftTime/1000);
+                 GameData.packTotalTime=Math.floor(jsonObj.data.packTotalTime/1000);
                  WndManager.root.main.loadingView.out();
                  WndManager.root.gameWnd.returnGold(jsonObj.data.msgList);
                //   WndManager.root.gameWnd.returnGold([{type:1,content:"127375,80"},{type:1,content:"12375,120"}]);
@@ -209,7 +211,9 @@ class SocketPush extends egret.EventDispatcher {
                   WndManager.root.gameWnd.gameContent.getTextEmoji(jsonObj.data);
                 break;
                 case PKT_TYPE2.ALERT://警告和提示
-                  WndManager.root.main.alert.show(jsonObj.msg,[{texture:"ok_png",code:100}]);
+                   if(jsonObj.msg=="钻石不足"){
+                         WndManager.root.main.alert.show(jsonObj.msg,[{texture:"buuton04_png",code:1003},{texture:"ok_png",code:100}]);
+                   }else   WndManager.root.main.alert.show(jsonObj.msg,[{texture:"ok_png",code:100}]);
                 break;
                 case PKT_TYPE2.MSG_FIXBANKER://抛骰子定庄家
                 GameData.banker=jsonObj.data.banker;

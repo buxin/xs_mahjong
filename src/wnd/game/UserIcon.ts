@@ -198,6 +198,15 @@ class UserIcon extends eui.Component{
 
    }
  //
+ private crownImg:eui.Image;
+ public set crown(tey:boolean){
+	// console.log(tey,"??????");
+	 this.crownImg.visible=tey;
+ }
+  public get crown():boolean{
+	return this.crownImg.visible;
+ }
+ //
  public speechPlay(){
      this.speech.visible=true;
 	 this.speech.play(-1);
